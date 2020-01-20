@@ -1,3 +1,7 @@
 .grid {
     margin: 1rem;
 }
+
+.grid-item {
+    margin-right: 1rem;
+}

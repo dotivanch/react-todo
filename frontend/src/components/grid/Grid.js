@@ -4,7 +4,6 @@ import './Grid.css';
 
 import Task from '../task/Task';
 import TaskDetails from '../modal/TaskDetails';
-import api from '../../models/api';
 
 export default class Grid extends Component {
     constructor(props){
@@ -33,11 +32,11 @@ export default class Grid extends Component {
             <div className='grid'>
                 <TaskDetails enabled={this.state.enabled} close={this.handleClose}/>
 
-                <div className='grid-item'>
                     {this.props.data.map(x => (
-                        <Task key={x['_id']} data={x} handleModal={this.handleModal}/>
+                        <span className='grid-item'>
+                                <Task key={x['_id']} data={x} handleModal={this.handleModal}/>
+                        </span>
                     ))}
-                </div>
             </div>
         )
     }
