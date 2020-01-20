@@ -1,0 +1,10 @@
+.register {
+    border: solid rgb(30, 30, 30) 1px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.register-header {
+    font-weight: bolder;
+    font-size: larger;
+}

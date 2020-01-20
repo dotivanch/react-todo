@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "axios": "^0.19.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.9",
+    "node-restful": "^0.2.6",
+    "pm2": "^4.2.1"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "start": "node src/loader.js",
+    "dev": "nodemon src/loader.js",
+    "test": "jest",
+    "production": "pm2 start src/loader.js --name todo-backend"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "src/loader.js",
+  "license": "MIT"
+}
