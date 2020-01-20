@@ -4,7 +4,7 @@
     font-weight: bold;
     font-size: 1.25rem;
     top: 0;
-    margin: -17px;
+    margin: -20px;
 }
 .details-close:hover,
 .details-close:focus {
@@ -36,8 +36,8 @@
 .details-content {
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 25px;
+    border-radius: 5px;
     width: 60%;
     z-index: 10;
     color: black;
@@ -77,4 +77,33 @@
 
 .task-icon-finish {
     color: rgb(0, 150, 0);
+}
+
+.task-control {
+    text-align: center;
+    border-top: solid gray 1px;
+    border-bottom: solid gray 1px;
+}
+
+.task-control h4 {
+    margin: 0.6rem;
+}
+
+.task-control button {
+    margin-right: 1rem;
+}
+
+button {
+    padding: 10px;
+    margin-bottom: 5px;
+    border: none;
+    border-right: solid #ffffff 1px;
+    border-left: solid #ffffff 1px;
+    transition: all ease 250ms;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: black;
+}
+button:hover {
+    background-color: #43A689A1;
+    border-color: #43A689;
 }

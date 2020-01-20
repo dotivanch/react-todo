@@ -74,10 +74,15 @@ export default class TaskDetails extends Component {
                     </span>
 
                     <div className='task-control'>
-                        <button name='finish' onClick={this.handleChangeState}>finish</button>
-                        <button name='doing' onClick={this.handleChangeState}>doing</button>
-                        <button name='unfinished' onClick={this.handleChangeState}>to do</button>
-                        <button name='delete' onClick={this.handleDelete}>delete</button>
+                        <h4>
+                            task control
+                        </h4>
+                        <div>
+                            <button name='finish' onClick={this.handleChangeState}>finished</button>
+                            <button name='doing' onClick={this.handleChangeState}>doing</button>
+                            <button name='unfinished' onClick={this.handleChangeState}>to do</button>
+                            <button name='delete' onClick={this.handleDelete}>delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
