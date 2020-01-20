@@ -3,14 +3,16 @@ import React, { Component } from "react";
 import './Register.css';
 import api from '../../models/api';
 
+const originalState = {
+    title: '',
+    description: '',
+};
+
 export default class Register extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            title: '',
-            description: '',
-        };
+        this.state = originalState;
     }
 
     handleChange = (event) => {
@@ -20,7 +22,9 @@ export default class Register extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         api.post('/api/task', this.state).then(response => {
-            //console.log(response);
+            if(response.status === 201){
+                this.setState(originalState);
+            }
         });
     }
 
@@ -37,10 +41,10 @@ export default class Register extends Component {
                     <br />
 
                     description:
-                    <textarea name='description' value={this.state.description} onChange={this.handleChange}></textarea>
+                    <input type='text' name='description' value={this.state.description} onChange={this.handleChange}></input>
                     <br />
 
-                    <input type='submit' onSubmit={this.handleSubmit}></input>
+                    <input type='submit' onClick={this.handleSubmit}></input>
                 </form>
             </div>
         )

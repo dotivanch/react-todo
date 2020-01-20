@@ -11,19 +11,12 @@ export default class Grid extends Component {
         super(props);
 
         this.state = {
-            data: [],
             enabled: -1,
         }
     }
 
     componentDidMount() {
-        this.fetchTasks();
-    }
-
-    fetchTasks() {
-        api.get('/api/task').then(response => {
-            this.setState({ data: response.data });
-        });
+        this.props.fetchTasks();
     }
 
     handleModal = (taskId) => {
@@ -32,7 +25,7 @@ export default class Grid extends Component {
 
     handleClose = () => {
         this.setState({enabled: -1});
-        this.fetchTasks();
+        this.props.fetchTasks();
     }
 
     render() {
@@ -40,8 +33,8 @@ export default class Grid extends Component {
             <div className='grid'>
                 <TaskDetails enabled={this.state.enabled} close={this.handleClose}/>
 
-                <div className='grid-tasks'>
-                    {this.state.data.map(x => (
+                <div className='grid-item'>
+                    {this.props.data.map(x => (
                         <Task key={x['_id']} data={x} handleModal={this.handleModal}/>
                     ))}
                 </div>
