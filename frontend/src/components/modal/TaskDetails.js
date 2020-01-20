@@ -61,7 +61,7 @@ export default class TaskDetails extends Component {
                     <i className='fas fa-times details-close' onClick={() => this.props.close()}></i>
 
                     <span className='details-header'>
-                        <i className={'fas fa-check-circle task-' + this.state.data.state.toLowerCase()}></i>
+                        <i className={'fas fa-check-circle task-icon-' + this.state.data.state.toLowerCase()}></i>
                         <h1>{this.state.data['title']}</h1>
                     </span>
 

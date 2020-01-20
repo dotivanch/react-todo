@@ -18,10 +18,10 @@ export default class Task extends Component {
 
     render() {
         return (
-            <div className='task' onClick={this.handleShow}>
+            <span className={'task task-' + this.props.data.state.toLowerCase()} onClick={this.handleShow}>
                 <span className='task-header'>{this.props.data.title}</span>
                 <span className='task-date'>{this.getFormatedDate(this.props.data.date)}</span>
-            </div>
+            </span>
         )
     }
 }

@@ -1,19 +1,33 @@
 .task {
     max-width: 25vh;
     max-height: 25vh;
-    border: solid rgb(75, 75, 75) 2px;
-    border-radius: 5px;
     padding: 5px 10px 10px 10px;
+    border-radius: 5px;
     margin-bottom: 10px;
     text-align: center;
+    display: inline-block;
 
     cursor: pointer;
+
+    color: black;
+    background-color: rgba(128, 201, 144, 0.75);
+
+    transition: all ease 250ms;
 }
 
 .task-header {
     font-weight: bold;
-    display: block;
-    border-bottom: solid rgb(120, 120, 120) 1px;
+    border-bottom: solid #D0E0CA 2px;
     margin-bottom: 5px;
     padding-bottom: 5px;
+    display: block;
+    word-wrap: break-word;
+}
+
+.task:hover {
+    background-color: rgba(132, 207, 149, 0.95);
+}
+
+.task-finish {
+    background-color: rgba(0, 202, 47, 0.95);
 }

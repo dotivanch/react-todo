@@ -24,7 +24,7 @@
 
 .details-background {
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.6);
     bottom: 0;
     left: 0;
     position: absolute;
@@ -40,6 +40,7 @@
     border: 1px solid #888;
     width: 60%;
     z-index: 10;
+    color: black;
 }
 
 .details-content span {
@@ -59,11 +60,11 @@
     text-align: center;
 }
 
-.task-unfinished {
+.task-icon-unfinished {
     color: #888;
 }
 
-.task-doing {
+.task-icon-doing {
     animation: blinker 1.5s linear infinite;
 }
 
@@ -74,6 +75,6 @@
     }
 }
 
-.task-finish {
+.task-icon-finish {
     color: rgb(0, 150, 0);
 }
