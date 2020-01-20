@@ -31,3 +31,7 @@
 .task-finish {
     background-color: rgba(0, 202, 47, 0.95);
 }
+
+.task-doing {
+    border: solid greenyellow 2px;
+}
