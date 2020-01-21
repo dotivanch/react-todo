@@ -3,9 +3,7 @@ import React, { Component } from "react";
 import './TaskDetails.css';
 
 import api from '../../models/api';
-import { formatDate, getToday } from '../../models/date';
-
-const today = formatDate(getToday());
+import { getFormatedDate } from '../../models/date';
 
 export default class TaskDetails extends Component {
     constructor(props){
@@ -34,11 +32,6 @@ export default class TaskDetails extends Component {
         return this.props.enabled !== -1;
     }
 
-    getFormattedDate() {
-        var d = new Date(Number(this.state.data['date']));
-        return d.toLocaleString();
-    }
-
     handleChangeState = (event) => {
         api.put(`/api/task/${this.state.data._id}`, {
             state: event.target.name.toUpperCase()
@@ -51,10 +44,6 @@ export default class TaskDetails extends Component {
         api.delete(`/api/task/${this.state.data._id}`).then(response => {
             this.props.close();
         });
-    }
-
-    isUrgent = () => {
-        return today === this.state.data.deadline;
     }
 
     render() {
@@ -76,12 +65,12 @@ export default class TaskDetails extends Component {
                         {this.state.data['description']}
                     </span>
 
-                    <span className={this.isUrgent() ? 'details-urgent' : ''}>
-                        deadline at: {this.state.data.deadline}
+                    <span>
+                        created at: {getFormatedDate(this.state.data.date)}
                     </span>
 
                     <span>
-                        created at: {this.getFormattedDate()}
+                        deadline at: {getFormatedDate(new Date(this.state.data.deadline))}
                     </span>
 
                     <div className='task-control'>

@@ -2,9 +2,13 @@ import React, { Component } from "react";
 
 import './Register.css';
 import api from '../../models/api';
-import { getTomorrow, formatDate } from '../../models/date';
+import { getTomorrow } from '../../models/date';
 
 const tomorrow = getTomorrow();
+
+const formatDate = (date) => {
+    return `${date.getFullYear()}-${("0"+(date.getMonth() + 1)).slice(-2)}-${("0"+date.getDate()).slice(-2)}`;
+}
 
 const originalState = {
     title: '',
@@ -29,7 +33,10 @@ export default class Register extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        api.post('/api/task', this.state).then(response => {
+        let timedState = this.state;
+        timedState.deadline = new Date(timedState.deadline);
+
+        api.post('/api/task', timedState).then(response => {
             if(response.status === 201){
                 this.setState(originalState);
                 this.props.fetchTasks();
