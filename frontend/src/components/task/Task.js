@@ -1,35 +1,46 @@
 import React, { Component } from "react";
 
 import './Task.css';
-import { formatDate, getToday } from '../../models/date';
-
-const today = formatDate(getToday());
-
-const months = ['Jan', 'Fev', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+import { getFormatedDate, isLateSec, isTodaySec, getToday } from '../../models/date';
 
 export default class Task extends Component {
-
-    getFormatedDate(seconds) {
-        let date = new Date();
-        date.setTime(seconds);
-        return `${date.getDate()} ${months[date.getMonth()]}`;
-    }
 
     handleShow = () => {
         this.props.handleModal(this.props.data._id);
     }
 
-    isUrgent = (deadline) => {
-        return today === this.props.data.deadline;
+    getTaskClass = () => {
+        let className = 'task';
+        className += ' task-' + this.props.data.state.toLowerCase();
+        className += ' ' + this.getStatus();
+        return className;
+    }
+
+    getStatus = () => {
+        if(this.props.data.state === 'DOING') return '';
+        if(isTodaySec(this.props.data.deadline)) return 'task-today';
+        if(isLateSec(this.props.data.deadline)) return 'task-late';
+        return '';
     }
 
     render() {
         return (
-            <span className={'task task-' + this.props.data.state.toLowerCase() + (this.isUrgent() ? ' task-deadline' : '')} onClick={this.handleShow}>
-                <span className='task-header'>{this.props.data.title}</span>
-                <span className='task-date'>{this.getFormatedDate(this.props.data.date)}</span>
+            <span className={this.getTaskClass()} onClick={this.handleShow} title={this.props.data.description}>
+                <span className='task-header'>
+                    {this.props.data.title}
+                </span>
+                
+                <span className='task-date' title='created at'>
+                    <i className="far fa-calendar-alt"></i>
+                    {getFormatedDate(this.props.data.date)}
+                </span>
+                
                 <br />
-                <span className='task-date'>{this.props.data.deadline}</span>
+                
+                <span className='task-date task-deadline' title='deadline'>
+                    <i className="fas fa-calendar-week"></i>
+                    {getFormatedDate(new Date(this.props.data.deadline))}
+                </span>
             </span>
         )
     }

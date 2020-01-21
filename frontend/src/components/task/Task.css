@@ -17,6 +17,10 @@
     transition: all ease 250ms;
 }
 
+.task:hover {
+    background-color: rgba(132, 207, 149, 0.95);
+}
+
 .task-header {
     font-weight: bold;
     border-bottom: solid #D0E0CA 2px;
@@ -26,8 +30,8 @@
     word-wrap: break-word;
 }
 
-.task:hover {
-    background-color: rgba(132, 207, 149, 0.95);
+.task-date * {
+    margin-right: 0.25rem;
 }
 
 .task-finish {
@@ -36,8 +40,17 @@
 
 .task-doing {
     border: solid greenyellow 2px;
+    box-shadow: 0 0 1rem greenyellow;
 }
 
-.task-deadline {
+.task-today {
+    border: solid orange 2px;
+    box-shadow: inset 0 0 0.5rem orange;
+    border-radius: 4px;
+}
+
+.task-late {
     border: solid red 2px;
+    border-radius: 4px;
+    box-shadow: inset 0 0 1rem red;
 }
