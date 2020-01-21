@@ -1,3 +1,7 @@
+$background: #fafafa;
+$foreground: #00171F;
+$lines: #00A8E8;
+
 .details-close {
     color: #3d3d3d;
     float: right;
@@ -20,6 +24,7 @@
     width: 100%;
     height: 100%;
     overflow: auto;
+    color: $foreground;
 }
 
 .details-background {
@@ -30,11 +35,13 @@
     position: fixed;
     right: 0;
     top: 0;
+    height: 100%;
     z-index: -1;
 }
 
 .details-content {
-    background-color: #fefefe;
+    background-color: $background;
+    
     margin: 15% auto;
     padding: 25px;
     border-radius: 5px;
@@ -46,8 +53,8 @@
 .details-content span {
     display: block;
     margin-bottom: 10px;
-    border-top: solid gray 1px;
-    border-bottom: solid gray 1px;
+    border-top: solid $lines 1px;
+    border-bottom: solid $lines 1px;
     padding: 5px 10px 5px 10px;
 }
 
@@ -81,8 +88,8 @@
 
 .task-control {
     text-align: center;
-    border-top: solid gray 1px;
-    border-bottom: solid gray 1px;
+    border-top: solid $lines 1px;
+    border-bottom: solid $lines 1px;
 }
 
 .task-control h4 {
@@ -104,8 +111,8 @@ button {
     color: black;
 }
 button:hover {
-    background-color: #43A689A1;
-    border-color: #43A689;
+    background-color: #45A1BF;
+    border-color: $lines;
     border-width: 2px;
 }
 

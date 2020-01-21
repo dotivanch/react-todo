@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import './TaskDetails.css';
+import './TaskDetails.scss';
 
 import api from '../../models/api';
 import { getFormatedDate } from '../../models/date';

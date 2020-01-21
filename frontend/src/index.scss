@@ -1,5 +1,7 @@
+$background: #1C2541;
+
 html, body {
-    background-color: #114B5F;
+    background-color: $background;
     color: aliceblue;
     font-family: 'Roboto Slab', serif;
 }
