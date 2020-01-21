@@ -4,6 +4,9 @@ import './Grid.css';
 
 import Task from '../task/Task';
 import TaskDetails from '../modal/TaskDetails';
+import { formatDate, getToday } from '../../models/date';
+
+const today = formatDate(getToday());
 
 export default class Grid extends Component {
     constructor(props){
@@ -27,16 +30,20 @@ export default class Grid extends Component {
         this.props.fetchTasks();
     }
 
+    isUrgent = (deadline) => {
+        return today === deadline;
+    }
+
     render() {
         return (
             <div className='grid'>
                 <TaskDetails enabled={this.state.enabled} close={this.handleClose}/>
 
-                    {this.props.data.map(x => (
-                        <span className='grid-item'>
-                                <Task key={x['_id']} data={x} handleModal={this.handleModal}/>
-                        </span>
-                    ))}
+                {this.props.data.map(x => (
+                    <span className='grid-item' key={x['_id']}>
+                            <Task isUrgent={this.isUrgent()} data={x} handleModal={this.handleModal}/>
+                    </span>
+                ))}
             </div>
         )
     }

@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import './TaskDetails.css';
 
 import api from '../../models/api';
+import { formatDate, getToday } from '../../models/date';
+
+const today = formatDate(getToday());
 
 export default class TaskDetails extends Component {
     constructor(props){
@@ -50,6 +53,10 @@ export default class TaskDetails extends Component {
         });
     }
 
+    isUrgent = () => {
+        return today === this.state.data.deadline;
+    }
+
     render() {
         if(!this.isEnabled() || this.state.data.length === 0) return null;
 
@@ -67,6 +74,10 @@ export default class TaskDetails extends Component {
 
                     <span>
                         {this.state.data['description']}
+                    </span>
+
+                    <span className={this.isUrgent() ? 'details-urgent' : ''}>
+                        deadline at: {this.state.data.deadline}
                     </span>
 
                     <span>
