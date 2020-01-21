@@ -1,6 +1,13 @@
+$lines: #6FFFE9;
+
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color;
+    background: rgba($color, $opacity);
+}
+
 .register {
-    border-top: solid rgb(31, 172, 130) 2px;
-    border-bottom: solid rgb(31, 172, 130) 2px;
+    border-top: solid $lines 2px;
+    border-bottom: solid $lines 2px;
     padding: 1rem;
     margin: 0 5rem;
     text-align: center;
@@ -16,21 +23,21 @@
 .register-form {
     display: inline-block;
     width: 50%;
-    border: solid #ffffff 1px;
+    border: solid $lines 1px;
 }
 
 input {
     padding: 7px;
     border: none;
-    border-bottom: solid #ffffff 1px;
-    border-top: solid #ffffff 1px;
+    border-bottom: solid $lines 1px;
+    border-top: solid $lines 1px;
     box-sizing : border-box;
     transition: all ease 250ms;
     background-color: rgba(255, 255, 255, 0.05);
     color: white;
 }
 input:hover {
-    box-shadow: inset 0 0 0.25rem #43A689;
+    box-shadow: inset 0 0 0.25rem $lines;
 }
 
 input[type='text'] {
@@ -38,7 +45,7 @@ input[type='text'] {
     width: 100%;
 }
 input[type='text']:hover {
-    border-color: #43A689;
+    border-color: $lines;
 }
 
 input[type='submit'] {
@@ -46,8 +53,8 @@ input[type='submit'] {
     width: 100%;
 }
 input[type='submit']:hover {
-    background-color: #43A689A1;
-    border-color: #43A689;
+    @include background-opacity($lines, 0.25);
+    border-color: $lines;
 }
 
 input[type='date'] {

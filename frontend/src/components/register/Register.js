@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import './Register.css';
+import './Register.scss';
 import api from '../../models/api';
 import { getTomorrow } from '../../models/date';
 
