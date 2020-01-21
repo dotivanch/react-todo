@@ -20,6 +20,7 @@
 }
 
 input {
+    padding: 7px;
     border: none;
     border-bottom: solid #ffffff 1px;
     border-top: solid #ffffff 1px;
@@ -33,7 +34,6 @@ input:hover {
 }
 
 input[type='text'] {
-    padding: 7px;
     margin-bottom: 5px;
     width: 100%;
 }
@@ -41,9 +41,7 @@ input[type='text']:hover {
     border-color: #43A689;
 }
 
-
 input[type='submit'] {
-    padding: 5px;
     margin-bottom: 5px;
     width: 100%;
 }
@@ -51,3 +49,10 @@ input[type='submit']:hover {
     background-color: #43A689A1;
     border-color: #43A689;
 }
+
+input[type='date'] {
+    padding: 3px;
+    margin-left: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+input[type=date]::-moz-clear { display: none; }

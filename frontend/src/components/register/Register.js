@@ -2,10 +2,14 @@ import React, { Component } from "react";
 
 import './Register.css';
 import api from '../../models/api';
+import { getTomorrow, formatDate } from '../../models/date';
+
+const tomorrow = getTomorrow();
 
 const originalState = {
     title: '',
     description: '',
+    deadline: formatDate(tomorrow),
 };
 
 export default class Register extends Component {
@@ -13,6 +17,10 @@ export default class Register extends Component {
         super(props);
 
         this.state = originalState;
+    }
+
+    componentDidMount() {
+        console.log(this.state.deadline);
     }
 
     handleChange = (event) => {
@@ -52,6 +60,14 @@ export default class Register extends Component {
                         value={this.state.description}
                         onChange={this.handleChange}
                         placeholder='description'
+                    />
+
+                    <label>deadline:</label>
+                    <input
+                        type='date'
+                        name='deadline'
+                        value={this.state.deadline}
+                        onChange={this.handleChange}
                     />
 
                     <input type='submit' onClick={this.handleSubmit}></input>
