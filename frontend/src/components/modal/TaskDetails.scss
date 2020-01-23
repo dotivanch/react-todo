@@ -60,10 +60,15 @@ $lines: #00A8E8;
 .details-header * {
     display: inline;
     margin-right: 10px;
+    vertical-align: middle;
 }
 
 .details-header {
     text-align: center;
+}
+
+.task-icon {
+    font-size: 1.25rem;
 }
 
 .task-icon-unfinished {

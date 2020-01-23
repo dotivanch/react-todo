@@ -57,8 +57,9 @@ export default class TaskDetails extends Component {
                     <i className='fas fa-times details-close' onClick={() => this.props.close()}></i>
 
                     <span className='details-header'>
-                        <i className={'fas fa-check-circle task-icon-' + this.state.data.state.toLowerCase()}></i>
+                        <i className={'fas fa-check-circle task-icon task-icon-' + this.state.data.state.toLowerCase()}></i>
                         <h1>{this.state.data['title']}</h1>
+                        <i className={'fas fa-check-circle task-icon task-icon-' + this.state.data.state.toLowerCase()}></i>
                     </span>
 
                     <span className='details-description'>
@@ -78,9 +79,9 @@ export default class TaskDetails extends Component {
                             task control
                         </h4>
                         <div>
-                            <button name='finish' onClick={this.handleChangeState}>finished</button>
-                            <button name='doing' onClick={this.handleChangeState}>doing</button>
                             <button name='unfinished' onClick={this.handleChangeState}>to do</button>
+                            <button name='doing' onClick={this.handleChangeState}>doing</button>
+                            <button name='finish' onClick={this.handleChangeState}>finished</button>
                             <button name='delete' onClick={this.handleDelete}>delete</button>
                         </div>
                     </div>

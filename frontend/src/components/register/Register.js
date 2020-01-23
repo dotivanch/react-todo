@@ -51,7 +51,7 @@ export default class Register extends Component {
                 <form
                     className='register-form'
                     onSubmit={this.handleSubmit}
-                    autocomplete="off"
+                    autoComplete="off"
                 >
                     <span className='register-header'>
                         add task
@@ -72,13 +72,15 @@ export default class Register extends Component {
                         placeholder='description'
                     />
 
-                    <label>deadline:</label>
-                    <input
-                        type='date'
-                        name='deadline'
-                        value={this.state.deadline}
-                        onChange={this.handleChange}
-                    />
+                    <div>
+                        <label>deadline:</label>
+                        <input
+                            type='date'
+                            name='deadline'
+                            value={this.state.deadline}
+                            onChange={this.handleChange}
+                        />
+                    </div>
 
                     <input type='submit' onClick={this.handleSubmit}></input>
                 </form>
