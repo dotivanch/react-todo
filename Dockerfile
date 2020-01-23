@@ -17,9 +17,7 @@ RUN yarn build
 FROM node:alpine
 
 WORKDIR /web
-COPY ./assets/exec.sh ./
 COPY ./backend/package* ./
-COPY ./assets/nginx* /etc/nginx/
 RUN cd /web && \
     yarn install && \
     apk add --no-cache nginx && \
@@ -30,8 +28,8 @@ RUN addgroup www && \
     adduser -D -H -G www www && \
     chmod -R 770 ./ && \
     chown -R www:www ./
-
-EXPOSE 80
+COPY ./assets/exec.sh ./
+COPY ./assets/nginx* /etc/nginx/
 
 COPY --from=builder /web/build /var/www
 
