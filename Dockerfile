@@ -17,20 +17,12 @@ RUN yarn build
 FROM node:alpine
 
 WORKDIR /web
+COPY ./assets/exec.sh ./
 COPY ./backend/package* ./
-RUN cd /web && \
-    yarn install && \
-    apk add --no-cache nginx && \
-    mkdir /run/nginx
+RUN yarn install
 
 COPY ./backend ./
-RUN addgroup www && \
-    adduser -D -H -G www www && \
-    chmod -R 770 ./ && \
-    chown -R www:www ./
-COPY ./assets/exec.sh ./
-COPY ./assets/nginx* /etc/nginx/
 
-COPY --from=builder /web/build /var/www
+COPY --from=builder /web/build /web/client/build
 
-ENTRYPOINT [ "sh", "exec.sh" ]
+ENTRYPOINT [ "yarn", "production" ]
