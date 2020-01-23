@@ -19,18 +19,12 @@ FROM node:alpine
 WORKDIR /web
 COPY ./backend/package* ./
 RUN cd /web && \
-    yarn install && \
-    apk add --no-cache nginx && \
-    mkdir /run/nginx
+    yarn install
 
 COPY ./backend ./
-RUN addgroup www && \
-    adduser -D -H -G www www && \
-    chmod -R 770 ./ && \
-    chown -R www:www ./
 COPY ./assets/exec.sh ./
 COPY ./assets/nginx* /etc/nginx/
 
-COPY --from=builder /web/build /var/www
+COPY --from=builder /web/build /web/src/client/build
 
 ENTRYPOINT [ "sh", "exec.sh" ]
