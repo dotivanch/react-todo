@@ -17,16 +17,16 @@ jobs:
       with:
         args: container:login
     - name: Docker Build
-      run: docker build -t todoapp:latest .
+      run: docker build -t web:latest .
     - name: Heroku Push
       uses: actions/heroku@master
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       with:
-        args: container:push todoapp:latest --app todoforceapp
+        args: container:push web:latest --app todoforceapp
     - name: Heroku Release
       uses: actions/heroku@master
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       with:
-        args: container:release todoapp --app todoforceapp
+        args: container:release web --app todoforceapp
