@@ -18,10 +18,11 @@ FROM node:alpine
 
 WORKDIR /web
 COPY ./backend/package* ./
-RUN yarn install
+RUN cd /web && \
+    yarn install
 
 COPY ./backend ./
 
-COPY --from=builder /web/build /web/client/build
+COPY --from=builder /web/build /web/src/client/build
 
 ENTRYPOINT [ "yarn", "production" ]

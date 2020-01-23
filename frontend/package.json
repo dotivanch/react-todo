@@ -2,7 +2,11 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
   "proxy": "http://localhost:3333",
+=======
+  "proxy": "https://localhost:3333",
+>>>>>>> express
   "dependencies": {
     "axios": "^0.19.1",
     "node-sass": "^4.13.1",
