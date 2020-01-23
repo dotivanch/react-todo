@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import './Grid.css';
+import './Grid.scss';
 
 import Task from '../task/Task';
 import TaskDetails from '../modal/TaskDetails';

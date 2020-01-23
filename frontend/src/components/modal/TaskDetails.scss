@@ -55,7 +55,6 @@ $lines: #00A8E8;
     margin-bottom: 10px;
     border-top: solid $lines 1px;
     border-bottom: solid $lines 1px;
-    padding: 5px 10px 5px 10px;
 }
 
 .details-header * {
@@ -98,6 +97,14 @@ $lines: #00A8E8;
 
 .task-control button {
     margin-right: 1rem;
+}
+
+.details-description {
+    padding: 15px;
+}
+
+.details-created, .details-deadline {
+    padding: 5px 10px 5px 10px;
 }
 
 button {

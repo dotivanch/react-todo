@@ -13,7 +13,7 @@ server.use(cors);
 server.use(express.static(path.join(__dirname, 'client/build')));
 
 server.listen(port, () => {
-    console.log(`API running @ http://localhost:${port}`)
+    console.log(`API running @ http://localhost:${port}`);
 });
 
 module.exports = server

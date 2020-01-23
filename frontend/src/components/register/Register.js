@@ -48,7 +48,11 @@ export default class Register extends Component {
         return (
             <div className='register'>
 
-                <form className='register-form' onSubmit={this.handleSubmit}>
+                <form
+                    className='register-form'
+                    onSubmit={this.handleSubmit}
+                    autocomplete="off"
+                >
                     <span className='register-header'>
                         add task
                     </span>
@@ -61,8 +65,7 @@ export default class Register extends Component {
                         placeholder='title'
                     />
 
-                    <input
-                        type='text'
+                    <textarea
                         name='description'
                         value={this.state.description}
                         onChange={this.handleChange}

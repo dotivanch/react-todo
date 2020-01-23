@@ -61,16 +61,16 @@ export default class TaskDetails extends Component {
                         <h1>{this.state.data['title']}</h1>
                     </span>
 
-                    <span>
+                    <span className='details-description'>
                         {this.state.data['description']}
                     </span>
 
-                    <span>
-                        created at: {getFormatedDate(this.state.data.date)}
+                    <span className='details-created'>
+                        created at: <strong>{getFormatedDate(this.state.data.date)}</strong>
                     </span>
 
-                    <span>
-                        deadline at: {getFormatedDate(new Date(this.state.data.deadline))}
+                    <span className='details-deadline'>
+                        deadline at: <strong>{getFormatedDate(new Date(this.state.data.deadline))}</strong>
                     </span>
 
                     <div className='task-control'>
