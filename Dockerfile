@@ -17,7 +17,6 @@ RUN yarn build
 FROM node:alpine
 
 WORKDIR /web
-COPY ./assets/exec.sh ./
 COPY ./backend/package* ./
 RUN yarn install
 
