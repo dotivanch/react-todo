@@ -6,7 +6,7 @@ import Task from '../task/Task';
 import TaskDetails from '../modal/TaskDetails';
 import { getFormatedDate } from '../../models/date';
 
-export default class Grid extends Component {
+export default class extends Component {
     constructor(props){
         super(props);
 

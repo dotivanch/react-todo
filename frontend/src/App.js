@@ -4,7 +4,7 @@ import Grid from './components/grid/Grid';
 import Register from './components/register/Register';
 import api from './models/api';
 
-export default class App extends Component {
+export default class extends Component {
     constructor(props) {
         super(props);
 

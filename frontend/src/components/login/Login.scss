@@ -1,0 +1,36 @@
+@import '../../index.scss';
+
+#login {
+    text-align: center;
+}
+
+#login form {
+    width: 50%;
+    display: inline-block;
+    border: solid $lines 1px;
+    padding: 4rem 2rem;
+}
+
+#login #login-content {
+    display: inline-block;
+    width: 25rem;
+}
+
+#login span {
+    display: block;
+    width: 100%;
+}
+
+#login input {
+    width: 15rem;
+}
+
+#login label {
+    display: inline-block;
+    width: 7rem;
+}
+
+#login input[type='submit'] {
+    margin-top: 2rem;
+    width: 10rem;
+}

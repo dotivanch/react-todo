@@ -6,9 +6,9 @@ import { getTomorrow } from '../../models/date';
 
 const tomorrow = getTomorrow();
 
-const formatDate = (date) => {
-    return `${date.getFullYear()}-${("0"+(date.getMonth() + 1)).slice(-2)}-${("0"+date.getDate()).slice(-2)}`;
-}
+const formatDate = (date) => (
+    `${date.getFullYear()}-${("0"+(date.getMonth() + 1)).slice(-2)}-${("0"+date.getDate()).slice(-2)}`
+);
 
 const originalState = {
     title: '',
@@ -16,7 +16,7 @@ const originalState = {
     deadline: formatDate(tomorrow),
 };
 
-export default class Register extends Component {
+export default class extends Component {
     constructor(props) {
         super(props);
 

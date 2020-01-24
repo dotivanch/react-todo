@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import './Task.scss';
 import { getFormatedDate, isLateSec, isTodaySec, getToday } from '../../models/date';
 
-export default class Task extends Component {
+export default class extends Component {
 
     handleShow = () => {
         this.props.handleModal(this.props.data._id);

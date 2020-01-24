@@ -5,7 +5,7 @@ import './TaskDetails.scss';
 import api from '../../models/api';
 import { getFormatedDate } from '../../models/date';
 
-export default class TaskDetails extends Component {
+export default class extends Component {
     constructor(props){
         super(props);
 
