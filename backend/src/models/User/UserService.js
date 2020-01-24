@@ -1,14 +1,37 @@
 const User = require('./User');
+const bcrypt = require('bcrypt'); 
+const jwt = require('jsonwebtoken');
 
-const hash = (data) => (require('crypto').createHash('sha1').update(data).digest('base64'));
+// https://medium.com/@bhanushali.mahesh3/building-a-restful-crud-api-with-node-js-jwt-bcrypt-express-and-mongodb-4e1fb20b7f3d
 
-function hash_password(req, res, next) {
-    req.body.password = hash(req.body.password);
-    next();
-}
+module.exports = {
+    create: (req, res, next) => {
+        User.create({
+            username: req.body.username,
+            password: req.body.password,
+            name: req.body.name,
+            active: true
+        });
+        res.status(201)
+        .json({status: 'Account created'});
+    },
 
-User.methods(['get', 'post', 'put', 'delete']);
-User.before('post', hash_password).before('put', hash_password);
-User.updateOptions({new: true, runValidators: true});
-
-module.exports = User
+    authenticate: (req, res, next) => {
+        User.findOne({username: req.body.username}, (err, info) => {
+            if(err) {
+                res.status(404)
+                .json({status: 'Account not found'});
+            }else{
+                if(bcrypt.compareSync(req.body.password, info.password)){
+                    const token = jwt.sign(
+                        { id: info.username },
+                        req.app.get('secretKey'),
+                        { expiresIn: '1h' }
+                    );
+                    res.status(200)
+                    .json({ token: token });
+                }
+            }
+        })
+    }
+};

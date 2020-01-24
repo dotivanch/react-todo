@@ -1,23 +1,25 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { login, logout } from './LoginActions';
 
 import api from '../../models/api';
 import './Login.scss';
 
-export default class extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             username: '',
             password: '',
-            loggedIn: false,
         }
-        
     }
 
     componentDidMount() {
         // checar se o token do usuário ainda é válido
+        this.props.login('res.data.token');
     }
 
     handleSubmit = (e) => {
@@ -28,12 +30,10 @@ export default class extends Component {
         }
         api.post('/api/login', info).then(res => {
             // faz alguma coisa aqui
-            this.setState({loggedIn: true});
         }).catch(err => {
             // manda notificação
-            
         });
-        this.setState({loggedIn: true});
+        this.props.login('res.data.token');
     }
 
     handleChange = (e) => {
@@ -41,7 +41,7 @@ export default class extends Component {
     }
 
     render() {
-        if(this.state.loggedIn){
+        if(this.props.loggedIn){
             return (
                 <Redirect to='/todos'/>
             )
@@ -85,3 +85,14 @@ export default class extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    loggedIn: state.login.loggedIn,
+    token: state.login.token,
+});
+
+const mapDispatchToProps = (dispatch) => (
+    bindActionCreators({ login, logout }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
