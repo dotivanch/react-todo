@@ -7,58 +7,64 @@ import { login, logout } from './LoginActions';
 import { api } from '../../models/api';
 import './Login.scss';
 
-class Login extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             username: '',
+            name: '',
             password: '',
-        }
-    }
-
-    componentDidMount() {
-        let storedInfo = localStorage.getItem('@todoapp/login');
-        storedInfo = JSON.parse(storedInfo);
-
-        if(storedInfo && storedInfo.token){
-            api.post('/api/user/auth', storedInfo).then(res => {
-                this.props.login(storedInfo.token, storedInfo.username, storedInfo.name);
-            }).catch(err => {
-                console.log(err);
-            });
+            password2: '',
+            disabled: true,
+            redirect: false,
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+        if(this.isDisabled()) return;
+
         let info = {
             username: this.state.username,
             password: this.state.password,
+            name: this.state.name,
         }
-        api.post('/api/user/login', info).then(res => {
-            this.props.login(res.data.token, res.data.username, res.data.name);
+        api.post('/api/user/register', info).then(res => {
+            console.log(res, res.status);
+            if(res.status === 201)
+                this.setState({redirect: true});
         }).catch(err => {
-            // manda notificação
+            console.log(err);
         });
     }
 
     handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({[e.target.name]: e.target.value}, () => {
+            this.setState({disabled: this.isDisabled()});
+        });
+    }
+
+    isDisabled = () => {
+        return  this.state.password !== this.state.password2 ||
+                this.state.username.length === 0 ||
+                this.state.name.length === 0;
     }
 
     render() {
-        if(this.props.loggedIn){
+        console.log(this.state.redirect);
+        if(this.state.redirect){
+            this.setState({redirect: false})
             return (
-                <Redirect to='/todos'/>
+                <Redirect to='/login'/>
             )
         }
 
         return (
             <div id='login'>
                 <div className='header'>
-                    <h1>login</h1>
-                    <a href='/register'>register</a>
+                    <h1>register</h1>
+                    <a href='/login'>login</a>
                 </div>
                 
                 <form
@@ -77,6 +83,16 @@ class Login extends Component {
                         </span>
 
                         <span>
+                            <label>name</label>
+                            <input
+                                name='name'
+                                type='text'
+                                value={this.state.name}
+                                onChange={this.handleChange}
+                            />
+                        </span>
+
+                        <span>
                             <label>password</label>
                             <input
                                 name='password'
@@ -87,10 +103,23 @@ class Login extends Component {
                         </span>
 
                         <span>
-                            <input type='submit' value='login'></input>
+                            <label>password again</label>
+                            <input
+                                name='password2'
+                                type='password'
+                                value={this.state.password2}
+                                onChange={this.handleChange}
+                            />
+                        </span>
+
+                        <span>
+                            <input
+                                type='submit'
+                                value='register'
+                                disabled={this.state.disabled ? 'disabled' : ''}
+                            />
                         </span>
                     </div>
-
                 </form>
             </div>
         )
@@ -106,4 +135,4 @@ const mapDispatchToProps = (dispatch) => (
     bindActionCreators({ login, logout }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

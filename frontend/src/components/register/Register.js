@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import './Register.scss';
-import api from '../../models/api';
+import { api, auth } from '../../models/api';
 import { getTomorrow } from '../../models/date';
 
 const tomorrow = getTomorrow();
@@ -23,10 +23,6 @@ export default class extends Component {
         this.state = originalState;
     }
 
-    componentDidMount() {
-        console.log(this.state.deadline);
-    }
-
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
     }
@@ -36,11 +32,18 @@ export default class extends Component {
         let timedState = this.state;
         timedState.deadline = new Date(timedState.deadline);
 
-        api.post('/api/task', timedState).then(response => {
+        api.post(
+            `/api/task/${this.props.user.username}`,
+            timedState,
+            auth(this.props.user.token)
+        ).then(response => {
+            console.log(response);
             if(response.status === 201){
                 this.setState(originalState);
                 this.props.fetchTasks();
             }
+        }).catch(err => {
+            console.error(err);
         });
     }
 

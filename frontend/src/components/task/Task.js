@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import './Task.scss';
-import { getFormatedDate, isLateSec, isTodaySec, getToday } from '../../models/date';
+import { getFormatedDate, isLateSec, isTodaySec } from '../../models/date';
 
 export default class extends Component {
 

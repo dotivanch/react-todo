@@ -9,9 +9,11 @@ const UserSchema = new mongoose.Schema({
     active: { type: Boolean, default: true }
 });
 
-UserSchema.pre('save', (next) => {
+UserSchema.pre('save', function (next) {
     this.password = bcrypt.hashSync(this.password, saltRounds);
     next();
+}, function (err) {
+    next(err);
 });
 
 module.exports = mongoose.model('User', UserSchema);

@@ -1,9 +1,10 @@
 $background: #1C2541;
 $lines: #6FFFE9;
+$text: aliceblue;
 
 html, body {
     background-color: $background;
-    color: aliceblue;
+    color: $text;
     font-family: 'Roboto Slab', serif;
 }
 
@@ -11,6 +12,10 @@ h1 {
     text-align: center;
 }
 
+a, a:visited {
+    color: $text;
+    text-decoration-color: $lines;
+}
 
 @mixin background-opacity($color, $opacity: 0.3) {
     background: $color;
@@ -59,4 +64,17 @@ input[type='date'] {
 }
 input[type=date]::-moz-clear {
     display: none;
+}
+
+input:disabled {
+    border-color: red;
+}
+
+.header {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.header * {
+    margin: 0;
 }

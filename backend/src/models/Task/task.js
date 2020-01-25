@@ -1,13 +1,13 @@
-const restful = require('node-restful');
-const mongoose = restful.mongoose;
+const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
     title: { type: String, required: true },
+    creator: { type: String, required: true },
     description: { type: String, required: true },
-    state: { type: String, default: 'UNFINISHED'},
     deadline: { type: String, required: true },
+    state: { type: String, default: 'unfinished'},
     priority: { type: Number, default: 0 },
     date: {type: String, default: Date.now }
 });
 
-module.exports = restful.model('Task', TaskSchema)
+module.exports = mongoose.model('Task', TaskSchema)

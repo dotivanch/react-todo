@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 
 import './TaskDetails.scss';
 
-import api from '../../models/api';
+import { api, auth } from '../../models/api';
 import { getFormatedDate } from '../../models/date';
 
-export default class extends Component {
+class TaskDetails extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            data: [],
+            data: '',
         };
     }
 
@@ -22,7 +23,7 @@ export default class extends Component {
     }
 
     fetchData(taskId) {
-        api.get(`/api/task/${taskId}`).then(response => {
+        api.get(`/api/task/id/${taskId}`).then(response => {
             this.setState({data: response.data});
             console.log(response.data);
         });
@@ -33,15 +34,25 @@ export default class extends Component {
     }
 
     handleChangeState = (event) => {
-        api.put(`/api/task/${this.state.data._id}`, {
-            state: event.target.name.toUpperCase()
-        }).then(response => {
-            this.fetchData(response.data['_id']);
+        api.put(
+            `/api/task/${this.state.data._id}`,
+            {
+                state: event.target.name
+            },
+            auth(this.props.token)
+        ).then(response => {
+            this.fetchData(this.state.data._id);
+        }).catch(err => {
+            console.error(err);
         });
     }
 
     handleDelete = () => {
-        api.delete(`/api/task/${this.state.data._id}`).then(response => {
+        api.delete(
+            `/api/task/${this.state.data._id}`,
+            auth(this.props.token)
+        ).then(response => {
+            console.log(response);
             this.props.close();
         });
     }
@@ -90,3 +101,9 @@ export default class extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    token: state.login.token,
+});
+
+export default connect(mapStateToProps)(TaskDetails);
