@@ -104,6 +104,7 @@ class TaskDetails extends Component {
 
 const mapStateToProps = (state) => ({
     token: state.login.token,
+    username: state.login.username,
 });
 
 export default connect(mapStateToProps)(TaskDetails);
