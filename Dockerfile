@@ -15,6 +15,8 @@ RUN yarn build
 ###
 FROM node:alpine
 
+RUN apk add python3
+
 WORKDIR /web
 COPY ./backend/package* ./
 RUN yarn install
