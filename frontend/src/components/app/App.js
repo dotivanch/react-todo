@@ -8,6 +8,8 @@ import Register from '../register/Register';
 import { api, auth } from '../../models/api';
 import { logout } from '../login/LoginActions';
 
+import './App.scss';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +38,9 @@ class App extends Component {
             <div id='App'>
                 <div className='header'>
                     <h1>todo list</h1>
+                    <span className='header-name'>
+                        {this.props.name}
+                    </span>
                     <a href='login' onClick={this.props.logout}>logout</a>
                 </div>
                 

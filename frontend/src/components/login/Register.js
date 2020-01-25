@@ -128,7 +128,6 @@ class Register extends Component {
 
 const mapStateToProps = (state) => ({
     loggedIn: state.login.loggedIn,
-    token: state.login.token,
 });
 
 const mapDispatchToProps = (dispatch) => (

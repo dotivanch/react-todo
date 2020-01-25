@@ -27,8 +27,14 @@ export default class extends Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
+    handleKey = (event) => {
+        if(event.key === 'Enter' && event.ctrlKey)
+            this.handleSubmit(undefined);
+    }
+
     handleSubmit = (event) => {
-        event.preventDefault();
+        if(event) event.preventDefault();
+        
         let timedState = this.state;
         timedState.deadline = new Date(timedState.deadline);
 
@@ -55,6 +61,7 @@ export default class extends Component {
                     className='register-form'
                     onSubmit={this.handleSubmit}
                     autoComplete="off"
+                    onKeyUp={this.handleKey}
                 >
                     <span className='register-header'>
                         add task

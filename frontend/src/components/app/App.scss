@@ -1,0 +1,7 @@
+@import '../../index.scss';
+$name: rgb(151, 180, 206);
+
+.header-name {
+    padding-right: 5px;
+    color: $name;
+}

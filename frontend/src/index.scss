@@ -67,7 +67,7 @@ input[type=date]::-moz-clear {
 }
 
 input:disabled {
-    border-color: red;
+    border: solid red 1px;
 }
 
 .header {
