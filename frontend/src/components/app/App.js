@@ -20,7 +20,7 @@ class App extends Component {
     fetchTasks = () => {
         api.get(
             `/api/task/${this.props.username}`,
-            auth(this.props.token)
+            auth(this.props)
         ).then(response => {
             this.setState({ data: response.data });
         });

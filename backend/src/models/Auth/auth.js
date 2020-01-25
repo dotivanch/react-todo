@@ -12,12 +12,12 @@ module.exports = {
     },
 
     verify(req, res, next) {
-        var token = req.headers['authorization'];
+        var [user, token] = req.headers['authorization'].split(' ');
         if(!token)
             return res.status(401).send({auth: false, message: 'No token provided'});
         
         jwt.verify(token, 'arma secreta', function(err, decoded) {
-            if(err){
+            if(err || decoded.id !== user){
                 return res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });
             }
             

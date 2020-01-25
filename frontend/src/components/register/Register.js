@@ -35,7 +35,7 @@ export default class extends Component {
         api.post(
             `/api/task/${this.props.user.username}`,
             timedState,
-            auth(this.props.user.token)
+            auth(this.props.user)
         ).then(response => {
             console.log(response);
             if(response.status === 201){

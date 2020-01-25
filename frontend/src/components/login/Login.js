@@ -100,6 +100,7 @@ class Login extends Component {
 const mapStateToProps = (state) => ({
     loggedIn: state.login.loggedIn,
     token: state.login.token,
+    username: state.login.username,
 });
 
 const mapDispatchToProps = (dispatch) => (

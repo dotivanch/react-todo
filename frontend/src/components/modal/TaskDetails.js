@@ -39,7 +39,7 @@ class TaskDetails extends Component {
             {
                 state: event.target.name
             },
-            auth(this.props.token)
+            auth(this.props)
         ).then(response => {
             this.fetchData(this.state.data._id);
         }).catch(err => {
@@ -50,7 +50,7 @@ class TaskDetails extends Component {
     handleDelete = () => {
         api.delete(
             `/api/task/${this.state.data._id}`,
-            auth(this.props.token)
+            auth(this.props)
         ).then(response => {
             console.log(response);
             this.props.close();

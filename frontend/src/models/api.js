@@ -7,8 +7,8 @@ const api = axios.create({
     baseURL: BASE_URL,
 });
 
-const auth = (token) => ({
-    headers: { Authorization: `${token}` }
+const auth = (user) => ({
+    headers: { Authorization: `${user.username} ${user.token}` }
 });
 
 export {api, auth };
