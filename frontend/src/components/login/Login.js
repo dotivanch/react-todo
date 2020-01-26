@@ -28,7 +28,7 @@ class Login extends Component {
                 this.props.login(storedInfo.token, storedInfo.username, storedInfo.name);
                 showToast('successfully logged in');
             }).catch(err => {
-                console.log(err);
+                localStorage.removeItem('@todoapp/login');
             });
         }
     }

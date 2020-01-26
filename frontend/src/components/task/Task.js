@@ -17,7 +17,7 @@ export default class extends Component {
     }
 
     getStatus = () => {
-        if(this.props.data.state === 'DOING') return '';
+        if(this.props.data.state === 'doing') return '';
         if(isTodaySec(this.props.data.deadline)) return 'task-today';
         if(isLateSec(this.props.data.deadline)) return 'task-late';
         return '';
