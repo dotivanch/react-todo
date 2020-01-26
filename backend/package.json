@@ -14,10 +14,10 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "node src/loader.js",
-    "dev": "nodemon src/loader.js",
-    "test": "jest",
-    "production": "pm2 start src/loader.js --name todo-backend --no-daemon"
+    "start": "export $(cat .env | xargs) && node src/loader.js",
+    "dev": "export $(cat .env | xargs) && nodemon src/loader.js",
+    "test": "export $(cat .env | xargs) && jest",
+    "production": "export $(cat .env | xargs) && pm2 start src/loader.js --name todo-backend --no-daemon"
   },
   "name": "backend",
   "version": "1.0.0",

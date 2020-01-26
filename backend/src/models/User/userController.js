@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const auth = require('../Auth/auth');
 
-// https://medium.com/@bhanushali.mahesh3/building-a-restful-crud-api-with-node-js-jwt-bcrypt-express-and-mongodb-4e1fb20b7f3d
-
 module.exports = {
     create: (req, res, next) => {
         userModel.create({
@@ -29,8 +27,8 @@ module.exports = {
                 if(bcrypt.compareSync(req.body.password, info.password)){
                     const token = jwt.sign(
                         { id: info.username },
-                        'arma secreta',
-                        { expiresIn: '1h' }
+                        process.env.SECRET,
+                        { expiresIn: '2h' }
                     );
                     res.status(200)
                     .json({
@@ -50,9 +48,11 @@ module.exports = {
             if(!info) {
                 next(err);
             }else{
-                if(auth.isValid(req.body.token)){
+                auth.isValid(req.body.token).then(function(decoded) {
                     res.status(200).end();
-                }
+                }).catch( function(err) {
+                    res.status(401).end();
+                });
             }
         })
     }

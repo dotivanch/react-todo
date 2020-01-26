@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-    isValid(token) {
-        if(!token) return false;
-        
-        jwt.verify(token, 'arma secreta', function(err, decoded) {
-            if(err) return false;
+    isValid(token) {      
+        return new Promise( function(resolve, reject) {
+            jwt.verify(token, process.env.SECRET, function(err, decoded) {
+                if(err) reject(err);
+                else {
+                    resolve(decoded);
+                }
+            });
         });
-
-        return true;
     },
 
     verify(req, res, next) {
@@ -16,7 +17,7 @@ module.exports = {
         if(!token)
             return res.status(401).send({auth: false, message: 'No token provided'});
         
-        jwt.verify(token, 'arma secreta', function(err, decoded) {
+        jwt.verify(token, process.env.SECRET, function(err, decoded) {
             if(err || decoded.id !== user){
                 return res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });
             }

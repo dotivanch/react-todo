@@ -14,6 +14,8 @@ server.listen(port, () => {
     console.log(`API running @ http://localhost:${port}`)
 });
 
+console.log('Secret:', process.env.SECRET);
+
 
 const staticFilesPath = path.join(__dirname, 'client/build');
 server.use(express.static(staticFilesPath));
