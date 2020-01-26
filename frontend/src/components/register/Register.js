@@ -4,6 +4,8 @@ import './Register.scss';
 import { api, auth } from '../../models/api';
 import { getTomorrow } from '../../models/date';
 
+import showToast from '../toast/toast';
+
 const tomorrow = getTomorrow();
 
 const formatDate = (date) => (
@@ -45,10 +47,12 @@ export default class extends Component {
         ).then(response => {
             console.log(response);
             if(response.status === 201){
+                showToast('task created');
                 this.setState(originalState);
                 this.props.fetchTasks();
             }
         }).catch(err => {
+            showToast('error while creating task');
             console.error(err);
         });
     }

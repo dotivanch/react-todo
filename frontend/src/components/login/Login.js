@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login, logout } from './LoginActions';
 
+import showToast from '../toast/toast';
+
 import { api } from '../../models/api';
 import './Login.scss';
 
@@ -24,6 +26,7 @@ class Login extends Component {
         if(storedInfo && storedInfo.token){
             api.post('/api/user/auth', storedInfo).then(res => {
                 this.props.login(storedInfo.token, storedInfo.username, storedInfo.name);
+                showToast('successfully logged in');
             }).catch(err => {
                 console.log(err);
             });
@@ -38,8 +41,9 @@ class Login extends Component {
         }
         api.post('/api/user/login', info).then(res => {
             this.props.login(res.data.token, res.data.username, res.data.name);
+            showToast('successfully logged in');
         }).catch(err => {
-            // manda notificação
+            showToast('there was a problem while logging in');
         });
     }
 

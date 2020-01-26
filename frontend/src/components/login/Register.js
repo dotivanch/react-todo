@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login, logout } from './LoginActions';
 
+import showToast from '../toast/toast';
+
 import { api } from '../../models/api';
 import './Login.scss';
 
@@ -32,8 +34,10 @@ class Register extends Component {
         }
         api.post('/api/user/register', info).then(res => {
             console.log(res, res.status);
-            if(res.status === 201)
+            if(res.status === 201){
+                showToast('account created');
                 this.setState({redirect: true});
+            }
         }).catch(err => {
             console.log(err);
         });

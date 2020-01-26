@@ -1,0 +1,35 @@
+@import '../../index.scss';
+
+.toast {
+    background-color: $text;
+    color: $background;
+    bottom: 30px;
+    border-radius: 1rem;
+    position: fixed;
+    z-index: 1;
+    display: inline-block;
+    word-wrap: break-word;
+    width: 250px;
+    left: 50%;
+    margin-left: -125px;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
