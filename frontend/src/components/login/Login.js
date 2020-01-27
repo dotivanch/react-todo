@@ -26,9 +26,10 @@ class Login extends Component {
         if(storedInfo && storedInfo.token){
             api.post('/api/user/auth', storedInfo).then(res => {
                 this.props.login(storedInfo.token, storedInfo.username, storedInfo.name);
-                showToast('successfully logged in');
+                showToast.info('successfully logged in');
             }).catch(err => {
-                localStorage.removeItem('@todoapp/login');
+                // perform a complete logout
+                this.props.logout();
             });
         }
     }
@@ -41,9 +42,9 @@ class Login extends Component {
         }
         api.post('/api/user/login', info).then(res => {
             this.props.login(res.data.token, res.data.username, res.data.name);
-            showToast('successfully logged in');
+            showToast.info('successfully logged in');
         }).catch(err => {
-            showToast('there was a problem while logging in');
+            if(err.response.status === 401) showToast.error('invalid name/password');
         });
     }
 

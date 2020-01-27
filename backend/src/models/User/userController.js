@@ -22,7 +22,7 @@ module.exports = {
     login: (req, res, next) => {
         userModel.findOne({username: req.body.username}, (err, info) => {
             if(!info) {
-                next(err);
+                res.status(401).json({message: 'Wrong username/password.'});
             }else{
                 if(bcrypt.compareSync(req.body.password, info.password)){
                     const token = jwt.sign(
@@ -37,7 +37,7 @@ module.exports = {
                         name: info.name
                     });
                 }else{
-                    next(err);
+                    res.status(401).json({message: 'Wrong username/password.'});
                 }
             }
         })

@@ -47,12 +47,12 @@ export default class extends Component {
         ).then(response => {
             console.log(response);
             if(response.status === 201){
-                showToast('task created');
+                showToast.info('task created');
                 this.setState(originalState);
                 this.props.fetchTasks();
             }
         }).catch(err => {
-            showToast('error while creating task');
+            showToast.error('error while creating task');
             console.error(err);
         });
     }

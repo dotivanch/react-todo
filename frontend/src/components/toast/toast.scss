@@ -1,7 +1,6 @@
 @import '../../index.scss';
 
 .toast {
-    background-color: $text;
     color: $background;
     bottom: 30px;
     border-radius: 1rem;
@@ -13,6 +12,15 @@
     left: 50%;
     margin-left: -125px;
 }
+
+.toast-info {
+    background-color: $text;
+}
+
+.toast-error {
+    background-color: rgb(255, 100, 100);
+}
+
 
 @-webkit-keyframes fadein {
     from {bottom: 0; opacity: 0;}

@@ -35,7 +35,7 @@ class Register extends Component {
         api.post('/api/user/register', info).then(res => {
             console.log(res, res.status);
             if(res.status === 201){
-                showToast('account created');
+                showToast.info('account created');
                 this.setState({redirect: true});
             }
         }).catch(err => {

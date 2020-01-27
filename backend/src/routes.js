@@ -33,6 +33,7 @@ module.exports = (server) => {
      *  Error handling
      */
     api.use( function (err, req, res, next) {
+        console.log(err);
         if(err.name === 'MongoError'){
             return res.status(400).send(err);
         }

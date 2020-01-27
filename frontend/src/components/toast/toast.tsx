@@ -13,14 +13,19 @@ const style = {
     'animation': `fadein ${toastConfig.animation}ms, fadeout ${toastConfig.animation}ms ${toastConfig.time}ms`,
 }
 
-const Toast: FunctionComponent<{ text: string }> = (props) => (
-    <div className='toast' style={style}>
+const Toast: FunctionComponent<{ text: string, status: string }> = (props) => (
+    <div className={'toast toast-' + props.status} style={style}>
         <h4>{props.text}</h4>
     </div>
 );
 
-const showToast = (text: string) => {
-    let toastElement = <Toast text={text} />;
+const showToast = {
+    info: (text: string) => displayToast(text, 'info'),
+    error: (text: string) => displayToast(text, 'error'),
+}
+
+const displayToast = (text: string, info: string) => {
+    let toastElement = <Toast text={text} status={info} />;
     let containerDomNode = document.createElement('div');
     containerDomNode.style.textAlign = 'center';
 
