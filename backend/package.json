@@ -2,6 +2,7 @@
   "dependencies": {
     "axios": "^0.19.1",
     "bcrypt": "^3.0.7",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.9",
@@ -14,10 +15,10 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "export $(cat .env | xargs) && node src/loader.js",
-    "dev": "export $(cat .env | xargs) && nodemon src/loader.js",
-    "test": "export $(cat .env | xargs) && jest",
-    "production": "export $(cat .env | xargs) && pm2 start src/loader.js --name todo-backend --no-daemon"
+    "start": "node src/loader.js",
+    "dev": "nodemon src/loader.js",
+    "test": "jest",
+    "production": "pm2 start src/loader.js --name todo-backend --no-daemon"
   },
   "name": "backend",
   "version": "1.0.0",
