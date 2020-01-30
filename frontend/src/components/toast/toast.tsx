@@ -13,8 +13,17 @@ const style = {
     'animation': `fadein ${toastConfig.animation}ms, fadeout ${toastConfig.animation}ms ${toastConfig.time}ms`,
 }
 
-const Toast: FunctionComponent<{ text: string, status: string }> = (props) => (
-    <div className={'toast toast-' + props.status} style={style}>
+interface IProps {
+    text: string,
+    status: string,
+};
+
+const Toast: FunctionComponent<IProps> = (props) => (
+    <div 
+        className={'toast toast-' + props.status}
+        style={style}
+        onClick={(t) => t.currentTarget.remove()}
+    >
         <h4>{props.text}</h4>
     </div>
 );
@@ -35,15 +44,11 @@ const displayToast = (text: string, info: string) => {
 }
 
 const hideToast = (el: HTMLDivElement) => {
-    setTimeout(() => {
-        deleteToast(el);
-    }, toastConfig.animation*0.9);
+    setTimeout(() => deleteToast(el), toastConfig.animation*0.9);
 }
 
 const deleteToast = (el: HTMLDivElement) => {
-    setTimeout(() => {
-        el.remove();
-    }, toastConfig.time);
+    setTimeout(() => el.remove(), toastConfig.time);
 }
 
 export default showToast;
