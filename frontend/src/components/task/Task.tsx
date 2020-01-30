@@ -1,9 +1,25 @@
 import React, { Component } from "react";
 
 import './Task.scss';
-import { getFormatedDate, isLateSec, isTodaySec } from '../../models/date';
+import { getFormatedDate, isLate, isToday } from '../../models/date';
 
-export default class extends Component {
+interface IProps {
+    data: {
+        _id: string,
+        title: string,
+        state: string,
+        description: string,
+        deadline: number,
+        date: number
+    },
+    handleModal(_: string): void,
+};
+
+export default class extends Component<IProps, {}> {
+
+    componentDidMount() {
+        console.log(this.props.data);
+    }
 
     handleShow = () => {
         this.props.handleModal(this.props.data._id);
@@ -19,8 +35,8 @@ export default class extends Component {
     getStatus = () => {
         if( this.props.data.state === 'doing' ||
             this.props.data.state === 'finish' ) return '';
-        if(isTodaySec(this.props.data.deadline)) return 'task-today';
-        if(isLateSec(this.props.data.deadline)) return 'task-late';
+        if(isToday(this.props.data.deadline)) return 'task-today';
+        if(isLate(this.props.data.deadline)) return 'task-late';
         return '';
     }
 
@@ -40,7 +56,7 @@ export default class extends Component {
                 
                 <span className='task-date task-deadline' title='deadline'>
                     <i className="fas fa-calendar-week"></i>
-                    {getFormatedDate(new Date(this.props.data.deadline))}
+                    {/*getFormatedDate(this.props.data.deadline.getDate())*/}
                 </span>
             </span>
         )

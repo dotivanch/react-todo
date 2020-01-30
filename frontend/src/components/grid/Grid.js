@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import './Grid.scss';
 
-import Task from '../task/Task';
+import Task from '../task/Task.tsx';
 import TaskDetails from '../modal/TaskDetails';
 
 export default class extends Component {
